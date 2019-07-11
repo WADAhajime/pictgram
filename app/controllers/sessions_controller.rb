@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   
   def create
     user = User.find_byu(session_params)
-    if user && user.authenticate(params[:session][:password])
+    if user && user.authenticate(session_params[:password])
       log_in user
       redirect_to root_path, success: 'ログインに成功しました'
     else
