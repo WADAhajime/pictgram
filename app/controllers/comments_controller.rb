@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
   end
   
   def create
-    @comment = Comment.new(comment: params[:comment][:comment], topic_id: params[:comment][:topic_id])
+    @comment = Comment.new(comment_params)
+      # comment: params[:comment][:comment], topic_id: params[:comment][:topic_id])
     @comment.user_id = current_user.id
 # binding.pry
     if @comment.save
@@ -16,7 +17,7 @@ class CommentsController < ApplicationController
   end
   
   private
-  # def comment_params
-  #   params.require(:comment).permit(:comment,)
-  # end
+  def comment_params
+    params.require(:comment).permit(:comment,:topic_id)
+  end
 end
